@@ -1,0 +1,8 @@
+===========================================sql ddyyyy format==========================================
+
+// for sql 2012 onwards
+DECLARE @myDate DATETIME = '2012-04-20 05:54:59'
+SELECT FORMAT(@myDate, 'MM-yyyy') 
+
+//below 2012
+LEFT(CONVERT(VARCHAR, clm.createdon, 101), 2) + RIGHT(CONVERT(VARCHAR, clm.createdon, 101), 4)
