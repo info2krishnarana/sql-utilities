@@ -44,3 +44,15 @@ CREATEDDATE DATETIME NOT NULL CONSTRAINT DF_BHAVCOPY_CREATEDDATE DEFAULT GETDATE
 
 ALTER TABLE BHAVCOPY
 ADD CONSTRAINT UC_BHAVCOPY_SYMBOL_SERIES_TIMESTAMP UNIQUE (SYMBOL,SERIES,[TIMESTAMP]);
+
+--------------------------------------------------------
+create table ServiceRequestPartReplace
+(
+ServiceRequestPartReplaceId int identity(1,1) NOT NULL CONSTRAINT PK_ServiceRequestPartReplace_ServiceRequestPartReplaceId PRIMARY KEY (ServiceRequestPartReplaceId),
+ServiceRequestId int NOT NULL,
+PartId int NOT NULL,
+CreateDate datetime NOT NULL CONSTRAINT DF_ServiceRequestPartReplace_CreateDate DEFAULT GETDATE() ,
+
+CONSTRAINT FK_ServiceRequestPartReplace_ServiceRequestId_ServiceRequestBoat_ServiceRequestBoatId FOREIGN KEY (ServiceRequestId) REFERENCES ServiceRequestBoat(ServiceRequestBoatId),
+CONSTRAINT FK_ServiceRequestPartReplace_PartId_Part_PartId FOREIGN KEY (PartId) REFERENCES Part(PartId)
+)
